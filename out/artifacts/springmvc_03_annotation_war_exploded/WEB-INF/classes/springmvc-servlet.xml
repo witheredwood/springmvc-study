@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <!-- 编写 springmvc 的配置文件 -->
+
+    <!-- 自动扫描包，让指定包下的注解生效，由 IOC 容器统一管理 -->
+    <context:component-scan base-package="com.wmq.controller"/>
+    <!-- 让 spring MVC 不处理静态资源： .css  .js .html .mp3 .mp4-->
+    <mvc:default-servlet-handler/>
+    <!-- 支持 mvc 注解驱动
+    在 spring 中一般采用 @RequestMapping 注解来完成映射关系
+    要想使 @ReqestMapping 注解生效
+    必须向上下文注册 DefaultAnnotationHandlerMapping 和一个 AnnotationMethodHandlerAdapter 实例
+    这两个实例分别在类级别和方法级别处理
+    而 annotation-driven 配置帮助我们自动完成上述两个实例的注入。
+    -->
+    <mvc:annotation-driven/>
+
+
+    <!-- HandlerMapping 是处理器映射 -->
+    <bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"/>
+    <!-- 处理器适配器 -->
+    <bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter"/>
+
+    <!--    配置视图解析器：DispatcherServlet 给它的 ModelAndView -->
+    <!--    获取 ModelAndView 的数据-->
+    <!--    解析 ModelAndView 的视图名字 -->
+    <!--    拼接视图名字，找到对应的视图 /WEB-INF/jsp/hello.jsp -->
+    <!--    将数据渲染到这个视图上 -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" id="InternalResourceViewResolver">
+        <!--        前缀 -->
+        <property name="prefix" value="/WEB-INF/jsp/"/>
+        <!--        后缀 -->
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+
+</beans>
