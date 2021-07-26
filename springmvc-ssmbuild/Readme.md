@@ -24,7 +24,7 @@
 
     <artifactId>springmvc-ssmbuild</artifactId>
 
-    <!-- 添加依赖: junit5，数据库驱动，连接池，servlet，jsp，mybatis，mybatis-spring，spring，log4j，aspectjweaver -->
+    <!-- 添加依赖: junit5，数据库驱动，连接池，servlet，jsp，mybatis，mybatis-spring，spring，lombok，log4j，aspectjweaver -->
     <dependencies>
         <!-- junit5 -->
         <dependency>
